@@ -1,0 +1,35 @@
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        マイページ
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="columns is-centered">
+            <table class="table is-fullwidth">
+                <tr>
+                    <td class="is-size-4">
+                      <strong><%= @user.name %></strong>
+                    </td>
+                    <% if @user.id == current_user.id %>
+                     <td class="is-size-4">
+                       <%= @user.email %>
+                     </td>
+                     <td>
+                     </td>
+                     <%= link_to "編集", edit_user_path(@user), class: "button is-primary" %>
+                    <% end %>
+                </tr>
+            </table> 
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

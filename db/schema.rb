@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_27_153347) do
+ActiveRecord::Schema.define(version: 2022_08_27_170342) do
 
   create_table "films", force: :cascade do |t|
     t.integer "user_id"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 2022_08_27_153347) do
     t.date "releasedate"
     t.string "country"
     t.string "starring"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "genre_id", null: false
+    t.index ["genre_id"], name: "index_films_on_genre_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -39,4 +47,5 @@ ActiveRecord::Schema.define(version: 2022_08_27_153347) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "films", "genres"
 end

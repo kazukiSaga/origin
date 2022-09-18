@@ -16,11 +16,20 @@
             <table class="table is-fullwidth">
                 <tr>
                     <td class="is-size-4">
+                      名前
+
                       <strong><%= @user.name %></strong>
                     </td>
                     <% if @user.id == current_user.id %>
                      <td class="is-size-4">
-                       <%= @user.email %>
+                       メールアドレス
+
+                       <strong><%= @user.email %></strong>
+                     </td>
+                     <td class="is-size-4">
+                       ニックネーム
+
+                       <strong><%= @user.nickname %></strong>
                      </td>
                      <td>
                      </td>

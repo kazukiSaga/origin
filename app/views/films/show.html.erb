@@ -1,2 +1,57 @@
-<h1>Films#show</h1>
-<p>Find me in app/views/films/show.html.erb</p>
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        映画情報
+      </h1>
+      <h1 class="title"> 
+        投稿者 
+      </h1> 
+      <%= link_to user_path(@film.user), class: "panel-block" do %>
+        <span class="panel-icon">
+          <i class="fas fa-user" aria-hidden="true"></i>
+        </span>
+       <p class="title is-4">
+         <%= @film.user.name %> さんのページへ
+       </p>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<div class="card-content">
+ <div class="media">
+  <div class="media-content">
+   <h1 class="title"> タイトル </h1>
+
+    <p class="title is-4"><%= @film.title %></p>
+   <h1 class="title"> あらすじ </h1>
+
+    <p class="title is-4"><%= @film.story %></p>
+   <h1 class="title"> 映画監督 </h1>
+
+    <p class="title is-4"><%= @film.filmdirector %></p>
+   <h1 class="title"> 原作 </h1>
+
+    <p class="title is-4"><%= @film.origin %></p>
+   <h1 class="title"> 公開日 </h1>
+
+    <p class="title is-4"><%= @film.releasedate %></p>
+   <h1 class="title"> 主演 </h1>
+    <p class="title is-4"><%= @film.starring %></p>
+   <h1 class="title"> 製作国 </h1>
+
+    <p class="title is-4"><%= @film.country %></p>
+   <h1 class="title"> ジャンル </h1>
+   
+    <p class="title is-4"><%= @film.genre.name %></p> 
+  </div>
+ </div>
+</div>
+
+
+
+
+<% if @film.user.id == current_user.id %>
+  <%= link_to "編集画面へ", edit_film_path(@film), class: "button is-success" %>
+<% end %>

@@ -1,2 +1,65 @@
-<h1>Films#new</h1>
-<p>Find me in app/views/films/new.html.erb</p>
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        映画情報投稿
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <%= form_for @film do |f| %>
+
+          <div class="field">  
+            <%= f.label :title, "タイトル", class: "label" %>
+            <%= f.text_field :title %>
+          </div>
+          
+          <div class="field">
+            <%= f.label :story, "あらすじ", class: "label" %>
+            <%= f.text_area :story %>
+          </div>
+
+          <div class="field">
+            <%= f.label :filmdirector, "監督", class: "label" %>
+            <%= f.text_field :filmdirector %>
+          </div>
+
+          <div class="field">
+            <%= f.label :origin, "原作", class: "label" %>
+            <%= f.text_field :origin %>
+          </div>
+
+          <div class="field">
+            <%= f.label :releasedate, "公開日", class: "label" %>
+            <%= f.text_field :releasedate %>
+          </div>
+
+          <div class="field">
+            <%= f.label :country, "製作国", class: "label" %>
+            <%= f.text_field :country %>
+          </div>
+
+          <div class="field">
+            <%= f.label :starring, "主演", class: "label" %>
+            <%= f.text_field :starring %>
+          </div>
+          
+          <div class="field">
+            <%= fields_for :genre ,(@genre) do |genre| %>
+              <%= genre.label:type, "ジャンル", class: "label" %>
+              <%= genre.collection_select :id, Genre.all, :id, :name %>
+            <% end %>    
+          </div>
+
+          <%= f.submit '投稿', class: "button is-success" %>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</section>

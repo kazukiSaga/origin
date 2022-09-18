@@ -1,2 +1,33 @@
-<h1>Films#index</h1>
-<p>Find me in app/views/films/index.html.erb</p>
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        映画一覧
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @films.each do |film| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <div class="title"><%=link_to film.user.name, user_path(film.user) %></div> 
+                    <%= link_to film_path(film) do %> 
+                      <div class="title"><%= film.title %></div>
+                    <% end %>
+                  <div class="content"><time><%= film.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新</div>
+                </div>
+              </div>    
+            </div>      
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

@@ -9,6 +9,7 @@
   </head>
 
   <body>
+
     <% if flash[:notice] %>
       <div class="notification is-info">
         <p class="notice"><%= notice %></p>
@@ -21,8 +22,9 @@
       </div>
     <% end %>
 
-    
-
+    <div class="notification is-danger">
+     <%= flash[:alret] %>
+    </div>
     
     <nav class="navbar is-warning">
       <div class="navbar-brand">
@@ -46,10 +48,13 @@
                   <%= link_to "映画投稿一覧", films_path, class: "button is-warning is-light" %>
                 </p>
                 <p class="control">
+                  <%= link_to "マイページ", user_path(current_user), class: "button is-warning is-light" %>
+                </p>
+                <p class="control">
                   <%= link_to "ユーザー一覧", users_path, class: "button is-warning is-light" %>
                 </p>
                 <p class="control">
-                  <%= link_to "映画新規投稿", films_path, class: "button is-warning is-light" %>
+                  <%= link_to "映画新規投稿", new_film_path, class: "button is-warning is-light" %>
                 </p>
                 <p class="control">
                   <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "button is-warning is-light" %>

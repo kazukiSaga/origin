@@ -16,8 +16,13 @@ class FilmsController < ApplicationController
     @film = Film.new(film_params)
     @film.user_id = current_user.id
     @film.genre_id = params[:genre][:id]
-    @film.save!
-    redirect_to film_path(@film)
+    if @film.save
+      redirect_to film_path(@film), notice: "映画を投稿しました。"
+    else
+      flash[:alret] = @film.errors.full_messages
+      @film.errors.full_messages
+      render :new
+    end
   end
 
   def edit

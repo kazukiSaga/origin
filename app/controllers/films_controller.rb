@@ -29,6 +29,9 @@ class FilmsController < ApplicationController
   def edit
     @film = Film.find(params[:id])
     @genres = Genre.all
+    if @film.user != current_user
+      redirect_to films_path, alret: '不正なアクセスです。'
+    end 
   end
 
   def update

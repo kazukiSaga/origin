@@ -18,7 +18,7 @@ class FilmsController < ApplicationController
     @film.user_id = current_user.id
     @film.genre_id = params[:genre][:id]
     if @film.save
-      redirect_to film_path(@film), notice: "映画を投稿しました。"
+      redirect_to film_path(@film), notice: "投稿に成功しました。"
     else
       flash[:alret] = @film.errors.full_messages
       @film.errors.full_messages
@@ -30,14 +30,17 @@ class FilmsController < ApplicationController
     @film = Film.find(params[:id])
     @genres = Genre.all
     if @film.user != current_user
-      redirect_to films_path, alret: '不正なアクセスです。'
+      redirect_to films_path, alert: '不正なアクセスです。'
     end 
   end
 
   def update
     @film = Film.find(params[:id])
-    @film.update(film_params)
-    redirect_to film_path(@film)
+    if @film.update(film_params)
+      redirect_to film_path(@film), notice: "更新に成功しました。"
+    else
+      render :edit
+    end
   end
 
   private

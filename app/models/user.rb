@@ -4,4 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :films, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
+  validates :name, presence: true
+  validates :nickname, presence: true
+
+  def already_favorited?(film)
+    self.favorites.exists?(film_id: film.id)
+  end
 end

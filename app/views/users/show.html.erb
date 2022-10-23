@@ -35,6 +35,10 @@
                      </td>
                      <%= link_to "編集", edit_user_path(@user), class: "button is-primary" %>
                     <% end %>
+                     お気に入り投稿一覧
+                    <% @films_registered_as_favorites.each do |films_registered_as_favorite| %>
+                     <%= films_registered_as_favorite.title %>
+                    <% end %>
                 </tr>
             </table> 
         </div>

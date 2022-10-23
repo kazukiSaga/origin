@@ -22,6 +22,13 @@
                       <div class="title"><%= film.title %></div>
                     <% end %>
                   <div class="content"><time><%= film.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新</div>
+                  <div>
+                    <% if current_user.already_favorited?(film) %>
+                      <%= button_to 'お気に入りを外す', film_favorites_path(film.id), method: :delete %>
+                    <% else %>
+                      <%= button_to 'お気に入り', film_favorites_path(film) %>
+                    <% end %>
+                  </div> 
                 </div>
               </div>    
             </div>      
